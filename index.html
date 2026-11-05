@@ -781,7 +781,20 @@ a.dl.reading small{color:var(--mint-ink);font-weight:600}
     if(sentRes) return; sentRes=true;
     const vals=[RES.act1,RES.act2,RES.r1,RES.r2,RES.r3,RES.r4,RES.planT,RES.planS,RES.planC,RES.logros];
     const body=new URLSearchParams(); ENTRY.forEach((k,i)=> body.append(k, vals[i]||'Sin dato'));
-    try{ fetch(FORM_URL,{method:'POST',mode:'no-cors',body}).catch(()=>{}); }catch(e){}
+    body.append('fvv','1'); body.append('pageHistory','0');
+    let ok=false;
+    try{ fetch(FORM_URL,{method:'POST',mode:'no-cors',body}).then(()=>{ ok=true; }).catch(()=> viaForm()); }catch(e){ viaForm(); }
+    setTimeout(()=>{ if(!ok) viaForm(); }, 4000);
+    let done2=false;
+    function viaForm(){
+      if(done2) return; done2=true;
+      try{
+        const ifr=document.createElement('iframe'); ifr.name='gf_sink'; ifr.style.display='none'; document.body.appendChild(ifr);
+        const f=document.createElement('form'); f.method='POST'; f.action=FORM_URL; f.target='gf_sink'; f.style.display='none';
+        for(const [k,v] of body.entries()){ const i=document.createElement('input'); i.type='hidden'; i.name=k; i.value=v; f.appendChild(i); }
+        document.body.appendChild(f); f.submit(); setTimeout(()=>{ f.remove(); ifr.remove(); }, 8000);
+      }catch(e){}
+    }
   }
   const medalHTML=(id,size)=>{ const b=BADGES[id]; return `<div class="bigmedal" style="width:${size}px;height:${size}px"><div class="disc ${b.cls}" style="width:${size}px;height:${size}px">${ic(b.icon)}</div></div>`; };
   function award(id){
