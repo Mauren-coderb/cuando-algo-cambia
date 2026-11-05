@@ -165,7 +165,7 @@ p{margin:0 0 1em;max-width:62ch}
 
 .cards{display:grid;gap:12px;margin-top:16px}
 .card{display:flex;gap:14px;align-items:flex-start;width:100%;text-align:left;min-height:110px;padding:16px;border-radius:22px;border:2px solid var(--line);background:var(--surface);cursor:pointer}
-.card .pic{width:52px;height:52px;margin:0;border:0}
+.card .pic{width:52px;height:52px;margin:0;border:0;flex:none}
 .card .pic svg{width:26px;height:26px}
 .card strong{display:block;font-size:1.15rem}
 .card .back{display:none}
@@ -350,6 +350,50 @@ button.dl{width:100%;text-align:left;cursor:pointer;border-style:solid;border-co
 button.dl small{color:var(--indigo);font-weight:600;white-space:nowrap}
 .refs p{font-size:14px;padding-left:2em;text-indent:-2em}
 
+.sorter{background:var(--surface);border:2px solid var(--line);border-radius:24px;padding:14px;margin:10px 0;user-select:none;-webkit-user-select:none}
+.sprog{font-size:14px;font-weight:700;color:var(--muted);text-align:center;margin-bottom:8px}
+.deck{position:relative;min-height:250px;display:grid;place-items:center}
+.sitem{width:min(260px,82%);background:#FFFFFF;color:#231C4F;border:3px solid #231C4F;border-radius:22px;padding:10px 10px 14px;text-align:center;font-weight:600;font-size:15px;line-height:1.35;touch-action:none;cursor:grab;box-shadow:0 8px 0 rgba(35,28,79,.15);transition:transform .25s ease;position:relative;z-index:2;animation:pop .35s ease}
+.sitem.dragging{transition:none;cursor:grabbing}
+.sitem svg{width:100%;height:auto;display:block;border-radius:14px;margin-bottom:8px}
+.sitem.fly{transition:transform .34s ease,opacity .34s ease;opacity:0}
+.doneMsg{font-weight:700;text-align:center;color:var(--mint-ink);margin:0}
+.baskets{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.basket{border:3px dashed;border-radius:20px;padding:10px 8px;min-height:120px;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;font:inherit;color:var(--ink);transition:transform .15s}
+.basket b{font-size:14px;text-align:center;line-height:1.25}
+.basket .bk-ic{width:36px;height:36px;border-radius:50%;display:grid;place-items:center}
+.b-yes{border-color:var(--pink);background:var(--pink-soft)}
+.b-yes .bk-ic{background:var(--pink);color:#FFFFFF}
+.b-no{border-color:var(--mint);background:var(--mint-soft)}
+.b-no .bk-ic{background:var(--mint);color:#0B3D35}
+.basket.over,.basket.got{transform:scale(1.06);border-style:solid}
+.bk-items{display:flex;flex-wrap:wrap;gap:5px;justify-content:center}
+.bk-items span{width:44px;height:30px;border-radius:7px;overflow:hidden;border:2px solid #231C4F;display:block}
+.bk-items span svg{width:100%;height:100%;display:block}
+.bk-items span.ok{border-color:#22C1A6;box-shadow:0 0 0 3px #22C1A6}
+.bk-items span.no{border-color:#C7365F;box-shadow:0 0 0 3px #C7365F}
+.diff{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
+.dcol h4{margin:0 0 8px;font-size:14px;text-align:center;padding:6px;border-radius:10px}
+.dcol:first-child h4{background:var(--indigo-soft)}
+.dcol:last-child h4{background:var(--pink-soft)}
+.dcol ul{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.dcol li{font-size:13.5px;line-height:1.3;min-height:56px;display:flex;align-items:center;padding:6px 10px;border-radius:12px;background:var(--bg);border:2px solid var(--line)}
+.dcol li.bare{padding:0;border:0;background:none}
+.dbtn{width:100%;min-height:56px;text-align:left;font:inherit;font-size:13.5px;line-height:1.3;padding:6px 10px;border-radius:12px;border:2px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;position:relative}
+.dbtn[aria-pressed="true"]{background:var(--no-soft);border-color:var(--no)}
+.dbtn[aria-pressed="true"]::after{content:"";position:absolute;inset:-5px;border:3px solid var(--no);border-radius:16px;transform:rotate(-1.5deg);pointer-events:none}
+.dbtn.ok{background:var(--mint-soft);border-color:var(--mint)}
+.dbtn.ok::after{border-color:var(--mint)}
+.dbtn.miss{border-style:dashed;border-color:var(--mint)}
+.match{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:10px 40px;margin:10px 0}
+.mlines{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible;z-index:2}
+.mitem{touch-action:none;user-select:none;-webkit-user-select:none}
+.mitem[data-side="L"]::after,.mitem[data-side="R"]::before{content:"";position:absolute;top:50%;width:12px;height:12px;border-radius:50%;background:var(--surface);border:2px solid var(--indigo);transform:translateY(-50%)}
+.mitem[data-side="L"]::after{right:-8px}
+.mitem[data-side="R"]::before{left:-8px}
+.olist button.oitem{width:100%;text-align:left;cursor:pointer;font:inherit;color:var(--ink)}
+.oitem .num.empty{background:var(--bg);border:2px dashed var(--line);color:transparent}
+
 /* Ventanas */
 .modal{position:fixed;inset:0;z-index:30;background:rgba(22,19,46,.6);display:grid;place-items:center;padding:20px}
 .modal[hidden]{display:none}
@@ -401,7 +445,7 @@ button.dl small{color:var(--indigo);font-weight:600;white-space:nowrap}
 
 @media (prefers-reduced-motion: reduce){*,*::before,*::after{transition:none!important;animation:none!important}.t-anim span,.hero .lead,.agenda{opacity:1!important;transform:none!important}}
 @media (min-width:640px){.cards{grid-template-columns:1fr 1fr 1fr}.card{flex-direction:column}.strip{grid-template-columns:1fr 1fr 1fr}.strat{grid-template-columns:1fr 1fr}.scen{grid-template-columns:1fr 1fr 1fr}.scen button{flex-direction:column;text-align:center}}
-@media (max-width:440px){.stop{width:26px;height:26px}.stop .i{width:14px;height:14px}.route li:not(:last-child)::after{margin:0 1px}.match{grid-template-columns:1fr}.bins{grid-template-columns:1fr}}
+@media (max-width:440px){.stop{width:26px;height:26px}.stop .i{width:14px;height:14px}.route li:not(:last-child)::after{margin:0 1px}.mitem{font-size:13.5px;padding:8px 9px}.match{gap:10px 30px}.bins{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -490,14 +534,17 @@ button.dl small{color:var(--indigo);font-weight:600;white-space:nowrap}
     <h3>Un sábado con Mateo</h3>
     <p>Mateo se despierta a las 8, como siempre. Su mamá le cuenta que hoy desayunará arepa en vez de su cereal, porque se acabó. A media mañana juega en su cuarto, como todos los sábados. Al mediodía, sus primos llegan de visita sin haber avisado. En la tarde, la piscina a la que iban a ir está cerrada. En la noche ve su programa favorito antes de dormir, como siempre. Antes de acostarse, su papá le dice que mañana irán donde la abuela por otro camino, porque la vía de siempre está cerrada.</p>
   </div>
-  <p class="instr"><span data-i="cards"></span>Clasifica cada situación: arrástrala al grupo que corresponde, o tócala y luego toca el grupo.</p>
-  <div class="pool" id="pool" aria-label="Situaciones por clasificar"></div>
-  <div class="bins">
-    <div class="bin yes" data-bin="yes" role="button" tabindex="0" aria-label="Grupo: requiere preparación"><h4><span data-i="bolt"></span>Requiere preparación</h4><div class="bin-items"></div></div>
-    <div class="bin nochg" data-bin="no" role="button" tabindex="0" aria-label="Grupo: sigue igual"><h4><span data-i="smile"></span>Sigue igual</h4><div class="bin-items"></div></div>
+  <p class="instr"><span data-i="cards"></span>Arrastra cada situación al baúl que corresponde, o toca el baúl.</p>
+  <div class="sorter">
+    <div class="sprog" id="sprog">Situación 1 de 4</div>
+    <div class="deck" id="deck"></div>
+    <div class="baskets">
+      <button type="button" class="basket b-yes" data-bin="yes"><span class="bk-ic" data-i="bolt"></span><b>Requiere preparación</b><span class="bk-items"></span></button>
+      <button type="button" class="basket b-no" data-bin="no"><span class="bk-ic" data-i="smile"></span><b>Sigue igual</b><span class="bk-items"></span></button>
+    </div>
   </div>
   <span class="err" id="act1Err" role="alert"></span>
-  <p style="margin-top:12px"><button class="btn" id="act1Check">Registrar respuestas</button></p>
+  <p class="act1-actions" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px"><button class="btn" id="act1Check" hidden>Registrar respuestas</button><button class="btn ghost" id="act1Reset" hidden>Volver a empezar</button></p>
   <p class="result" id="act1Res" hidden></p>
   <ul class="fblist" id="act1Fb"></ul>
 </section>
@@ -540,32 +587,33 @@ button.dl small{color:var(--indigo);font-weight:600;white-space:nowrap}
 <section class="screen" data-short="Pon a prueba lo aprendido" data-icon="star" hidden aria-labelledby="h7">
   <span class="mins"><span data-i="clock"></span>2 minutos y medio</span>
   <h2 id="h7" tabindex="-1">Pon a prueba lo aprendido</h2>
-  <p>Cuatro retos cortos, cada uno con una dinámica distinta. Responde todos y toca «Registrar respuestas» para ver la retroalimentación. Tienes un solo intento.</p>
-  <p class="note">Vista de ejemplo: en la versión final, las respuestas se enviarán a un Google Form para registrar los resultados.</p>
+  <p>Cuatro retos cortos, uno a la vez y cada uno con una dinámica distinta. Al terminar el cuarto, toca «Registrar respuestas» para ver la retroalimentación. Tienes un solo intento.</p>
+  <div class="stepdots" id="rstep" aria-hidden="true"></div>
   <div id="evalForm">
     <div class="qsec" id="sq1">
-      <span class="qtype">Reto 1 · Encuentra</span>
-      <h3><span class="pic c-pink" data-i="search"></span>¿Cuáles requieren preparar al niño? <span class="req">*</span></h3>
-      <p class="small">Marca todas las situaciones en las que conviene preparar al niño para un cambio.</p>
-      <div class="checks" id="q1"></div>
+      <span class="qtype">Reto 1 · Encuentra las diferencias</span>
+      <h3><span class="pic c-pink" data-i="search"></span>¿Qué cambió este lunes? <span class="req">*</span></h3>
+      <p class="small">Compara el lunes de siempre de Tomás con este lunes. Toca, en «Este lunes», los momentos que cambiaron y que, por eso, requieren prepararlo.</p>
+      <div class="diff"><div class="dcol"><h4>Un lunes de siempre</h4><ul id="dNormal"></ul></div><div class="dcol"><h4>Este lunes</h4><ul id="dThis"></ul></div></div>
       <span class="err" id="eq1"></span><div class="qfb" id="fq1" hidden></div>
     </div>
-    <div class="qsec" id="sq2">
+    <div class="qsec" id="sq2" hidden>
       <span class="qtype">Reto 2 · Une</span>
       <h3><span class="pic c-indigo" data-i="link"></span>Une cada situación con su estrategia <span class="req">*</span></h3>
-      <p class="small">Toca una situación y luego la estrategia que mejor prepara al niño. Para deshacer una pareja, toca uno de sus elementos.</p>
-      <div class="match"><div class="mcol" id="mLeft"><span class="mhead">Situación</span></div><div class="mcol" id="mRight"><span class="mhead">Estrategia</span></div></div>
+      <p class="small">Arrastra una línea desde cada situación hasta la estrategia que mejor prepara al niño (o toca una y luego la otra). Para deshacer una línea, toca uno de sus extremos.</p>
+      <div class="match" id="match"><svg class="mlines" id="mlines" aria-hidden="true"></svg><div class="mcol" id="mLeft"><span class="mhead">Situación</span></div><div class="mcol" id="mRight"><span class="mhead">Estrategia</span></div></div>
       <span class="err" id="eq2"></span><div class="qfb" id="fq2" hidden></div>
     </div>
-    <div class="qsec" id="sq3">
+    <div class="qsec" id="sq3" hidden>
       <span class="qtype">Reto 3 · Ordena</span>
       <h3><span class="pic c-mint" data-i="heart"></span>Ordena los pasos para acompañar a Valentina <span class="req">*</span></h3>
       <div class="case"><div class="facts"><span>Valentina, 10 años</span><span>Cursa 5.º</span><span>Usa un tablero de pictogramas en casa</span></div><p>Hoy iban a celebrar su cumpleaños en el parque, pero empezó a llover y la celebración pasó para la casa. Aunque se lo explicaron, Valentina grita, llora y se tapa los oídos.</p></div>
-      <p class="small">Usa las flechas para poner los pasos en el orden en que el cuidador debería hacerlos.</p>
-      <ol class="olist" id="q3"></ol>
-      <div class="qfb" id="fq3" hidden></div>
+      <p class="small">Toca los pasos en el orden en que el cuidador debería hacerlos: el primero que toques será el 1. Si te equivocas, toca un paso numerado para quitarle el número.</p>
+      <ul class="olist" id="q3"></ul>
+      <button type="button" class="linkbtn" id="q3reset">Borrar el orden y empezar de nuevo</button>
+      <span class="err" id="eq3"></span><div class="qfb" id="fq3" hidden></div>
     </div>
-    <div class="qsec" id="sq4">
+    <div class="qsec" id="sq4" hidden>
       <span class="qtype">Reto 4 · Observa y elige</span>
       <h3><span class="pic c-yellow" data-i="cards"></span>Historieta: el acto cultural <span class="req">*</span></h3>
       <p>Mañana hay acto cultural en el colegio de Tomás, de 10 años: entrará a la misma hora, pero no habrá clases normales, sonará música fuerte y habrá mucha gente. Observa cómo le cuenta cada cuidador.</p>
@@ -576,7 +624,7 @@ button.dl small{color:var(--indigo);font-weight:600;white-space:nowrap}
     </div>
   </div>
   <span class="err" id="evalErr" role="alert"></span>
-  <p style="margin-top:16px"><button class="btn" id="evalCheck">Registrar respuestas</button></p>
+  <p class="rnav" id="rnav" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px"><button class="btn ghost" id="rPrev">Reto anterior</button><button class="btn" id="rNext">Siguiente reto</button><button class="btn" id="evalCheck" hidden>Registrar respuestas</button></p>
 </section>
 
 <section class="screen" data-short="Construye tu plan" data-icon="clipboard" hidden aria-labelledby="h8">
@@ -729,7 +777,7 @@ button.dl small{color:var(--indigo);font-weight:600;white-space:nowrap}
   const screens=[...document.querySelectorAll('.screen')], route=document.getElementById('route');
   let cur=0, maxSeen=0;
   const done={video:false, tipos:false, act1:false, estr:false, act2:false, ev:false, plan:false};
-  const GATES={2:['video','Mira el video completo para continuar.'],3:['tipos','Toca las tres tarjetas para conocer los tipos de cambio.'],5:['estr','Descubre las cinco estrategias para continuar.'],4:['act1','Clasifica todas las situaciones y toca «Registrar respuestas» para continuar.'],6:['act2','Toma las tres decisiones del caso para continuar.'],7:['ev','Responde los cuatro retos y toca «Registrar respuestas» para continuar.'],8:['plan','Construye tu plan hasta el final para continuar.']};
+  const GATES={2:['video','Mira el video completo para continuar.'],3:['tipos','Toca las tres tarjetas para conocer los tipos de cambio.'],5:['estr','Descubre las cinco estrategias para continuar.'],4:['act1','Clasifica las cuatro situaciones y toca «Registrar respuestas» para continuar.'],6:['act2','Toma las tres decisiones del caso para continuar.'],7:['ev','Responde los cuatro retos y toca «Registrar respuestas» para continuar.'],8:['plan','Construye tu plan hasta el final para continuar.']};
   screens.forEach((s,i)=>{
     const li=document.createElement('li'), b=document.createElement('button');
     b.className='stop'; b.type='button'; b.innerHTML=ic(s.dataset.icon);
@@ -910,62 +958,62 @@ button.dl small{color:var(--indigo);font-weight:600;white-space:nowrap}
   const tcards=[...document.querySelectorAll('.card')];
   tcards.forEach(c=> c.addEventListener('click',()=>{ c.setAttribute('aria-pressed', c.getAttribute('aria-pressed')==='true'?'false':'true'); c.dataset.seen='1'; if(tcards.every(x=>x.dataset.seen)) markDone('tipos'); }));
 
-  /* ---------- Actividad 1: clasificar ---------- */
+  /* ---------- Actividad 1: clasificar en baúles ---------- */
+  const ART={
+    pool:'<rect width="160" height="110" rx="14" fill="#D5F6EF"/><rect x="18" y="52" width="124" height="44" rx="8" fill="#7FD3F0" stroke="#231C4F" stroke-width="3"/><path d="M26 72c8-6 14 6 22 0s14 6 22 0 14 6 22 0 14 6 22 0 14 6 22 0" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/><path d="M116 52V26M128 52V26M116 34h12M116 44h12" stroke="#231C4F" stroke-width="3" stroke-linecap="round"/><g transform="rotate(-8 60 30)"><rect x="22" y="14" width="80" height="28" rx="6" fill="#FF5D8F" stroke="#231C4F" stroke-width="3"/><text x="62" y="33" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF" font-family="Lexend, Verdana, sans-serif">CERRADO</text></g>',
+    cereal:'<rect width="160" height="110" rx="14" fill="#FFF5CF"/><path d="M18 52h52a26 26 0 0 1-52 0z" fill="#FFFFFF" stroke="#231C4F" stroke-width="3"/><circle cx="32" cy="48" r="4" fill="#E8A33A"/><circle cx="44" cy="46" r="4" fill="#E8A33A"/><circle cx="56" cy="48" r="4" fill="#E8A33A"/><path d="M22 32l44 44M66 32L22 76" stroke="#FF5D8F" stroke-width="5" stroke-linecap="round"/><path d="M80 55h18m-7-7 7 7-7 7" fill="none" stroke="#231C4F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><ellipse cx="128" cy="58" rx="24" ry="20" fill="#F2D27A" stroke="#231C4F" stroke-width="3"/><path d="M116 52l4 3M132 48l4 3M124 64l4 3M138 60l3 3" stroke="#B8862E" stroke-width="3" stroke-linecap="round"/>',
+    toys:'<rect width="160" height="110" rx="14" fill="#E8E5FF"/><rect x="20" y="88" width="120" height="10" rx="5" fill="#C9C2F5"/><rect x="34" y="58" width="30" height="30" rx="4" fill="#FF5D8F" stroke="#231C4F" stroke-width="3"/><rect x="64" y="58" width="30" height="30" rx="4" fill="#22C1A6" stroke="#231C4F" stroke-width="3"/><rect x="49" y="28" width="30" height="30" rx="4" fill="#FFD23F" stroke="#231C4F" stroke-width="3"/><circle cx="118" cy="72" r="16" fill="#5B4BDB" stroke="#231C4F" stroke-width="3"/><path d="M102 72h32M118 56c-6 8-6 24 0 32" fill="none" stroke="#FFFFFF" stroke-width="2.5"/>',
+    tv:'<rect width="160" height="110" rx="14" fill="#2E2766"/><circle cx="134" cy="22" r="10" fill="#FFF5CF"/><circle cx="139" cy="18" r="8" fill="#2E2766"/><rect x="30" y="22" width="88" height="60" rx="8" fill="#FFFFFF" stroke="#231C4F" stroke-width="3"/><rect x="38" y="29" width="72" height="46" rx="4" fill="#7FD3F0"/><path d="M74 40l3 7 7 .5-5.5 4.5 2 7-6.5-4-6.5 4 2-7-5.5-4.5 7-.5z" fill="#FFD23F"/><path d="M62 82l-8 14M86 82l8 14" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>'
+  };
+  const artSvg=k=>`<svg viewBox="0 0 160 110" aria-hidden="true">${ART[k]}</svg>`;
   const A1=[
-    ['Se despierta a las 8',false,'Se despierta a las 8: es parte de su rutina; no hay cambio.'],
-    ['Desayuna arepa en vez de cereal',true,'Arepa en vez de cereal: es un cambio pequeño, pero toca algo que Mateo espera cada mañana.'],
-    ['Juega en su cuarto',false,'Juega en su cuarto: es lo que hace todos los sábados.'],
-    ['Los primos llegan sin avisar',true,'Primos sin avisar: es un imprevisto; conviene explicarle con calma quién llegó y qué pasará.'],
-    ['La piscina está cerrada',true,'Piscina cerrada: un plan cancelado necesita explicación y una alternativa clara.'],
-    ['Ve su programa favorito',false,'Programa favorito: es su rutina de siempre.'],
-    ['Mañana irán por otro camino',true,'Otro camino: es un cambio previsible; su papá hizo bien en avisarle la noche anterior.']
+    {t:'La piscina a la que iban a ir está cerrada',yes:true,art:'pool',fb:'Un plan cancelado necesita explicación y una alternativa clara.'},
+    {t:'Juega en su cuarto, como todos los sábados',yes:false,art:'toys',fb:'Es parte de su rutina: no hay cambio.'},
+    {t:'Desayuna arepa en vez de su cereal',yes:true,art:'cereal',fb:'Es un cambio pequeño, pero toca algo que Mateo espera cada mañana.'},
+    {t:'Ve su programa favorito antes de dormir, como siempre',yes:false,art:'tv',fb:'Es su rutina de siempre.'}
   ];
-  const pool=document.getElementById('pool'), bins=[...document.querySelectorAll('.bin')], e1=document.getElementById('act1Err');
-  let selChip=null;
-  const order1=[3,0,5,1,6,2,4];
-  order1.forEach(i=>{ const b=document.createElement('button'); b.className='chip'; b.type='button'; b.dataset.i=i; b.textContent=A1[i][0]; pool.appendChild(b); });
-  function selectChip(c){ if(selChip) selChip.classList.remove('sel'); selChip = (selChip===c) ? null : c; if(selChip) selChip.classList.add('sel'); }
-  function moveTo(c, target){ const dest = target.classList.contains('bin') ? target.querySelector('.bin-items') : pool; dest.appendChild(c); c.classList.remove('sel'); selChip=null; e1.textContent=''; }
-  bins.forEach(bn=>{
-    bn.addEventListener('click', e=>{ if(done.act1) return; const chip=e.target.closest('.chip'); if(chip) return; if(selChip) moveTo(selChip, bn); });
-    bn.addEventListener('keydown', e=>{ if((e.key==='Enter'||e.key===' ') && selChip && !done.act1){ e.preventDefault(); moveTo(selChip, bn); } });
-  });
-  document.getElementById('main').addEventListener('click', e=>{ const c=e.target.closest('.chip'); if(c && e.detail===0 && !done.act1) selectChip(c); });
-  pool.addEventListener('click', e=>{ if(done.act1) return; if(!e.target.closest('.chip') && selChip) moveTo(selChip, pool); });
-  // arrastre con puntero (funciona en celular y computador)
-  let drag=null;
-  document.getElementById('main').addEventListener('pointerdown', e=>{
-    const c=e.target.closest('.chip'); if(!c || done.act1 || !c.closest('#pool,.bin')) return;
-    drag={c, x:e.clientX, y:e.clientY, moved:false, ghost:null}; c.setPointerCapture(e.pointerId);
-  });
-  document.getElementById('main').addEventListener('pointermove', e=>{
-    if(!drag) return;
-    if(!drag.moved && Math.hypot(e.clientX-drag.x, e.clientY-drag.y)>8){ drag.moved=true; const g=drag.c.cloneNode(true); g.classList.add('dragghost','sel'); document.body.appendChild(g); drag.ghost=g; drag.c.style.opacity='.35'; }
-    if(drag.moved){ drag.ghost.style.left=e.clientX+'px'; drag.ghost.style.top=e.clientY+'px'; const el=document.elementFromPoint(e.clientX,e.clientY); bins.forEach(b=> b.classList.toggle('over', !!el && b.contains(el))); }
-  });
-  function endDrag(e){
-    if(!drag) return;
-    const d=drag; drag=null;
-    if(d.moved){
-      d.ghost.remove(); d.c.style.opacity=''; bins.forEach(b=> b.classList.remove('over'));
-      const el=document.elementFromPoint(e.clientX,e.clientY); const target=el && (el.closest('.bin')||el.closest('#pool'));
-      if(target) moveTo(d.c, target);
-    } else selectChip(d.c);
+  const deck=document.getElementById('deck'), sprog=document.getElementById('sprog'), baskets=[...document.querySelectorAll('.basket')], e1=document.getElementById('act1Err');
+  const a1Check=document.getElementById('act1Check'), a1Reset=document.getElementById('act1Reset');
+  let a1i=0, a1ans=[];
+  function a1Card(){
+    deck.innerHTML='';
+    if(a1i>=A1.length){ deck.innerHTML='<p class="doneMsg">¡Listo! Clasificaste las cuatro situaciones.<br><span class="small">Revisa los baúles y toca «Registrar respuestas».</span></p>'; sprog.textContent='Todas las situaciones están clasificadas'; a1Check.hidden=false; a1Reset.hidden=false; return; }
+    sprog.textContent=`Situación ${a1i+1} de ${A1.length}`;
+    const c=document.createElement('div'); c.className='sitem'; c.tabIndex=0; c.setAttribute('role','group'); c.setAttribute('aria-label',A1[a1i].t+'. Toca un baúl para clasificarla.');
+    c.innerHTML=artSvg(A1[a1i].art)+`<span>${A1[a1i].t}</span>`; deck.appendChild(c); attachDrag(c);
   }
-  document.getElementById('main').addEventListener('pointerup', endDrag);
-  document.getElementById('main').addEventListener('pointercancel', e=>{ if(drag && drag.ghost){ drag.ghost.remove(); drag.c.style.opacity=''; } drag=null; });
-  document.getElementById('act1Check').addEventListener('click',(ev)=>{
+  const overBasket=(x,y)=> baskets.find(b=>{ const r=b.getBoundingClientRect(); return x>=r.left&&x<=r.right&&y>=r.top&&y<=r.bottom; });
+  function attachDrag(c){
+    let st=null;
+    c.addEventListener('pointerdown',e=>{ if(done.act1) return; st={x:e.clientX,y:e.clientY}; c._dx=0; c._dy=0; try{ c.setPointerCapture(e.pointerId); }catch(_){} c.classList.add('dragging'); });
+    c.addEventListener('pointermove',e=>{ if(!st) return; c._dx=e.clientX-st.x; c._dy=e.clientY-st.y; c.style.transform=`translate(${c._dx}px,${c._dy}px) rotate(${c._dx/18}deg)`; const b=overBasket(e.clientX,e.clientY); baskets.forEach(x=> x.classList.toggle('over',x===b)); });
+    c.addEventListener('pointerup',e=>{ if(!st) return; st=null; c.classList.remove('dragging'); baskets.forEach(x=> x.classList.remove('over')); const b=overBasket(e.clientX,e.clientY); if(b){ sortTo(b.dataset.bin); return; } if(Math.abs(c._dx)>90){ sortTo(c._dx<0?'yes':'no'); return; } c.style.transform=''; });
+    c.addEventListener('pointercancel',()=>{ st=null; c.classList.remove('dragging'); baskets.forEach(x=> x.classList.remove('over')); c.style.transform=''; });
+  }
+  function sortTo(bin){
+    if(done.act1 || a1i>=A1.length) return;
+    const c=deck.querySelector('.sitem'), b=baskets.find(x=> x.dataset.bin===bin);
+    a1ans[a1i]=bin; e1.textContent='';
+    const mini=document.createElement('span'); mini.innerHTML=artSvg(A1[a1i].art); mini.dataset.i=a1i; mini.title=A1[a1i].t; b.querySelector('.bk-items').appendChild(mini);
+    b.classList.add('got'); setTimeout(()=> b.classList.remove('got'), 400);
+    if(c && !reduce){ const cr=c.getBoundingClientRect(), br=b.getBoundingClientRect(); const tx=(c._dx||0)+(br.left+br.width/2)-(cr.left+cr.width/2), ty=(c._dy||0)+(br.top+br.height/2)-(cr.top+cr.height/2); c.classList.remove('dragging'); c.classList.add('fly'); c.style.transform=`translate(${tx}px,${ty}px) scale(.2)`; }
+    setTimeout(()=>{ a1i++; a1Card(); }, reduce?0:340);
+  }
+  baskets.forEach(b=> b.addEventListener('click',()=> sortTo(b.dataset.bin)));
+  a1Reset.addEventListener('click',()=>{ if(done.act1) return; a1i=0; a1ans=[]; baskets.forEach(b=> b.querySelector('.bk-items').innerHTML=''); a1Check.hidden=true; a1Reset.hidden=true; a1Card(); });
+  a1Check.addEventListener('click',()=>{
     if(done.act1) return;
-    if(pool.querySelector('.chip')){ e1.textContent='Clasifica todas las situaciones antes de registrar.'; return; }
-    let hits=0, wrong=0; const fb=[];
-    bins.forEach(bn=>{ const yes=bn.dataset.bin==='yes'; bn.querySelectorAll('.chip').forEach(c=>{ const a=A1[+c.dataset.i], ok=a[1]===yes; c.classList.add(ok?'ok':'no'); c.disabled=true; if(yes&&a[1]) hits++; if(yes&&!a[1]) wrong++; fb.push([ok,a[2]]); }); });
-    markDone('act1'); ev.currentTarget.disabled=true; ev.currentTarget.textContent='Respuestas registradas';
-    document.getElementById('act1Fb').innerHTML=fb.map(f=>`<li class="${f[0]?'':'bad'}">${f[0]?'Bien clasificada. ':'Revisa: '}${f[1]}</li>`).join('');
-    const msg1=`Identificaste ${hits} de 4 situaciones que requieren preparación`+(wrong?` y pusiste ${wrong} que no lo requerían.`:'.');
-    const msg2=hits>=3?'Reconoces los cambios que necesitan preparación.':'Revisa la retroalimentación de cada situación antes de continuar.';
+    if(a1i<A1.length){ e1.textContent='Clasifica las cuatro situaciones antes de registrar.'; return; }
+    let hits=0;
+    const fb=A1.map((a,i)=>{ const ok=a1ans[i]===(a.yes?'yes':'no'); if(ok) hits++; const m=document.querySelector(`.bk-items span[data-i="${i}"]`); if(m) m.classList.add(ok?'ok':'no'); return `<li class="${ok?'':'bad'}">${ok?'Bien clasificada':'Revisa'}: <b>${a.t}</b> ${a.yes?'requiere preparación':'sigue igual'}. ${a.fb}</li>`; });
+    markDone('act1'); a1Check.disabled=true; a1Check.textContent='Respuestas registradas'; a1Reset.hidden=true;
+    document.getElementById('act1Fb').innerHTML=fb.join('');
+    const msg1=`Clasificaste correctamente ${hits} de 4 situaciones.`;
+    const msg2=hits>=3?'Reconoces los cambios que necesitan preparación, incluso los pequeños.':'Revisa la retroalimentación de cada situación antes de continuar.';
     const r=document.getElementById('act1Res'); r.hidden=false; r.textContent=msg1+' '+msg2;
-    openModal(`<span class="verdict">${hits>=3?'¡Muy bien!':'Sigue practicando'}</span><p class="big" id="dlgTitle">${msg1}</p><p>${msg2}</p><button class="btn" data-close>${hits>=3?'Ver mi logro':'Ver retroalimentación'}</button>`, 'bubble'+(hits>=3?'':' bad'), hits>=3?()=>award('a1'):null);
+    openModal(`<span class="verdict">${hits>=3?'¡Muy bien!':'Sigue practicando'}</span><p class="big" id="dlgTitle">${msg1}</p><p>${msg2}</p><button class="btn" data-close>${hits>=3?'Ver mi logro':'Ver retroalimentación'}</button>`, 'bubble'+(hits>=3?'':' bad'), hits>=3?()=>award('a1'):()=> document.getElementById('act1Fb').scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'}));
   });
+  a1Card();
 
   /* ---------- Estrategias y guía ---------- */
   const STR=[
@@ -1046,18 +1094,21 @@ button.dl small{color:var(--indigo);font-weight:600;white-space:nowrap}
   }
   dots2();
 
-  /* ---------- Evaluación: cuatro retos ---------- */
-  const Q1=[
-    ['La profesora de siempre tendrá una incapacidad y desde el lunes llegará una reemplazante.',true],
-    ['Este año la ruta escolar lo recogerá 15 minutos más temprano.',true],
-    ['Comerá el mismo almuerzo de todos los lunes, servido en su plato de siempre.',false],
-    ['En el colegio cambiarán el timbre del descanso por una canción.',true],
-    ['Su programa favorito estrena un capítulo nuevo, a la hora y en el canal de siempre.',false],
-    ['Para el cumpleaños de la tía, la familia almorzará en un restaurante y no en casa de la abuela, como de costumbre.',true]
+  /* ---------- Evaluación: cuatro retos, uno a la vez ---------- */
+  // Reto 1: encuentra las diferencias
+  const DIFF=[
+    ['6:30 · Lo recoge la ruta','6:15 · Lo recoge la ruta',true],
+    ['7:00 · Clase con la profe Ana','7:00 · Clase con el profe Andrés',true],
+    ['10:00 · Descanso con el timbre','10:00 · Descanso con una canción',true],
+    ['12:30 · Almuerzo en casa','12:30 · Almuerzo en casa',false],
+    ['3:00 · Tareas con mamá','3:00 · Tareas con mamá',false],
+    ['5:00 · Juega en el parque','5:00 · Visita del tío en casa',true]
   ];
-  const q1=document.getElementById('q1');
-  Q1.forEach((x,i)=>{ const l=document.createElement('label'); l.className='check'; l.innerHTML=`<input type="checkbox" name="q1" value="${i}"><span>${x[0]}</span>`; q1.appendChild(l); });
-  // Reto 2: unir
+  const dThis=document.getElementById('dThis');
+  document.getElementById('dNormal').innerHTML=DIFF.map(r=>`<li>${r[0]}</li>`).join('');
+  dThis.innerHTML=DIFF.map((r,i)=>`<li class="bare"><button type="button" class="dbtn" data-i="${i}" aria-pressed="false">${r[1]}</button></li>`).join('');
+  dThis.addEventListener('click',e=>{ const b=e.target.closest('.dbtn'); if(!b||done.ev) return; b.setAttribute('aria-pressed', b.getAttribute('aria-pressed')==='true'?'false':'true'); document.getElementById('eq1').textContent=''; });
+  // Reto 2: unir con líneas
   const PAIRS=[
     ['Desde el lunes tendrá un profesor nuevo.','Mostrarle una foto del profesor y marcar el día en su calendario.'],
     ['El paseo del domingo se canceló por la lluvia.','Explicarle qué harán en su lugar y cuándo será el paseo.'],
@@ -1065,43 +1116,55 @@ button.dl small{color:var(--indigo);font-weight:600;white-space:nowrap}
     ['Se acabó su cereal favorito.','Avisarle antes del desayuno y ofrecerle dos opciones.']
   ];
   const PCOL=['#5B4BDB','#FF5D8F','#14907B','#B97710'];
-  const rightOrder=[2,0,3,1];
-  const mLeft=document.getElementById('mLeft'), mRight=document.getElementById('mRight');
+  const match=document.getElementById('match'), mLines=document.getElementById('mlines'), mLeft=document.getElementById('mLeft'), mRight=document.getElementById('mRight');
   PAIRS.forEach((p,i)=>{ const b=document.createElement('button'); b.type='button'; b.className='mitem'; b.dataset.side='L'; b.dataset.i=i; b.textContent=p[0]; mLeft.appendChild(b); });
-  rightOrder.forEach(i=>{ const b=document.createElement('button'); b.type='button'; b.className='mitem'; b.dataset.side='R'; b.dataset.i=i; b.textContent=PAIRS[i][1]; mRight.appendChild(b); });
-  const links={}; let mSel=null;
-  function paintMatch(){
-    document.querySelectorAll('.mitem').forEach(b=>{ const bd=b.querySelector('.badge'); if(bd) bd.remove(); b.style.borderColor=''; });
-    let n=0;
-    Object.entries(links).forEach(([l,r])=>{ const col=PCOL[n%4]; n++; [mLeft.querySelector(`[data-i="${l}"]`), mRight.querySelector(`[data-i="${r}"]`)].forEach(b=>{ b.style.borderColor=col; b.insertAdjacentHTML('beforeend',`<span class="badge" style="background:${col}">${n}</span>`); }); });
+  [2,0,3,1].forEach(i=>{ const b=document.createElement('button'); b.type='button'; b.className='mitem'; b.dataset.side='R'; b.dataset.i=i; b.textContent=PAIRS[i][1]; mRight.appendChild(b); });
+  const links={}; let mSel=null, mDrag=null;
+  const itemOf=(side,i)=> (side==='L'?mLeft:mRight).querySelector(`[data-i="${i}"]`);
+  function edge(b){ const m=match.getBoundingClientRect(), r=b.getBoundingClientRect(); return b.dataset.side==='L' ? [r.right-m.left, r.top+r.height/2-m.top] : [r.left-m.left, r.top+r.height/2-m.top]; }
+  const curve=(a,b)=>`M${a[0].toFixed(1)} ${a[1].toFixed(1)} C${(a[0]+26).toFixed(1)} ${a[1].toFixed(1)}, ${(b[0]-26).toFixed(1)} ${b[1].toFixed(1)}, ${b[0].toFixed(1)} ${b[1].toFixed(1)}`;
+  function drawLines(temp){
+    if(!match.offsetParent) return;
+    const w=match.offsetWidth, h=match.offsetHeight; mLines.setAttribute('viewBox',`0 0 ${w} ${h}`);
+    let out='', n=0;
+    Object.entries(links).forEach(([l,r])=>{ const lb=itemOf('L',l), rb=itemOf('R',r); const res=lb.dataset.res; const col=res==='ok'?'#22C1A6':res==='no'?'#C7365F':PCOL[n%4]; n++; const a=edge(lb), b=edge(rb);
+      out+=`<path d="${curve(a,b)}" fill="none" stroke="${col}" stroke-width="3.5" stroke-linecap="round"/><circle cx="${a[0]}" cy="${a[1]}" r="6" fill="${col}"/><circle cx="${b[0]}" cy="${b[1]}" r="6" fill="${col}"/>`; });
+    if(temp) out+=`<path d="${temp}" fill="none" stroke="#5B4BDB" stroke-width="3" stroke-dasharray="6 5" stroke-linecap="round"/>`;
+    mLines.innerHTML=out;
   }
+  function paintMatch(){
+    match.querySelectorAll('.mitem').forEach(b=>{ const bd=b.querySelector('.badge'); if(bd) bd.remove(); b.style.borderColor=''; });
+    let n=0;
+    Object.entries(links).forEach(([l,r])=>{ const col=PCOL[n%4]; n++; [itemOf('L',l), itemOf('R',r)].forEach(b=>{ b.style.borderColor=col; b.insertAdjacentHTML('beforeend',`<span class="badge" style="background:${col}">${n}</span>`); }); });
+    drawLines();
+  }
+  function link(L,R){ delete links[L]; Object.keys(links).forEach(k=>{ if(links[k]===R) delete links[k]; }); links[L]=R; if(mSel){ mSel.classList.remove('sel'); mSel=null; } document.getElementById('eq2').textContent=''; paintMatch(); }
+  function linkedOf(b){ return b.dataset.side==='L' ? (b.dataset.i in links ? b.dataset.i : null) : (Object.keys(links).find(k=> links[k]===b.dataset.i) ?? null); }
   function mClick(b){
     if(done.ev) return;
-    document.getElementById('eq2').textContent='';
-    const side=b.dataset.side, i=b.dataset.i;
-    const linkedL = side==='L' ? (i in links ? i : null) : Object.keys(links).find(k=>links[k]===i);
-    if(linkedL!=null && !mSel){ delete links[linkedL]; paintMatch(); return; }
+    const ln=linkedOf(b);
+    if(ln!=null && !mSel){ delete links[ln]; paintMatch(); return; }
     if(!mSel){ mSel=b; b.classList.add('sel'); return; }
     if(mSel===b){ b.classList.remove('sel'); mSel=null; return; }
-    if(mSel.dataset.side===side){ mSel.classList.remove('sel'); mSel=b; b.classList.add('sel'); return; }
-    const L = side==='L' ? i : mSel.dataset.i, R = side==='R' ? i : mSel.dataset.i;
-    delete links[L]; Object.keys(links).forEach(k=>{ if(links[k]===R) delete links[k]; });
-    links[L]=R; mSel.classList.remove('sel'); mSel=null; paintMatch();
+    if(mSel.dataset.side===b.dataset.side){ mSel.classList.remove('sel'); mSel=b; b.classList.add('sel'); return; }
+    const L=b.dataset.side==='L'?b.dataset.i:mSel.dataset.i, R=b.dataset.side==='R'?b.dataset.i:mSel.dataset.i; link(L,R);
   }
-  document.querySelectorAll('.mitem').forEach(b=> b.addEventListener('click',()=> mClick(b)));
-  // Reto 3: ordenar
+  match.addEventListener('pointerdown',e=>{ const b=e.target.closest('.mitem'); if(!b||done.ev) return; mDrag={b,x:e.clientX,y:e.clientY,moved:false}; try{ b.setPointerCapture(e.pointerId); }catch(_){} });
+  match.addEventListener('pointermove',e=>{ if(!mDrag) return; if(!mDrag.moved && Math.hypot(e.clientX-mDrag.x,e.clientY-mDrag.y)>8) mDrag.moved=true; if(mDrag.moved){ const m=match.getBoundingClientRect(), s=edge(mDrag.b), p=[e.clientX-m.left,e.clientY-m.top]; drawLines(mDrag.b.dataset.side==='L'?curve(s,p):curve(p,s)); } });
+  match.addEventListener('pointerup',e=>{ if(!mDrag) return; const d=mDrag; mDrag=null; if(!d.moved){ mClick(d.b); return; } const other=d.b.dataset.side==='L'?mRight:mLeft; const t=[...other.querySelectorAll('.mitem')].find(x=>{ const r=x.getBoundingClientRect(); return e.clientX>=r.left&&e.clientX<=r.right&&e.clientY>=r.top&&e.clientY<=r.bottom; }); if(t){ const L=d.b.dataset.side==='L'?d.b.dataset.i:t.dataset.i, R=d.b.dataset.side==='R'?d.b.dataset.i:t.dataset.i; link(L,R); } else drawLines(); });
+  match.addEventListener('pointercancel',()=>{ mDrag=null; drawLines(); });
+  match.addEventListener('click',e=>{ const b=e.target.closest('.mitem'); if(b && e.detail===0) mClick(b); });
+  // Reto 3: numerar el orden
   const STEPS=[
     'Mantener la calma, bajar el volumen de la voz y llevarla a un lugar con menos ruido.',
     'Reconocer lo que siente con una frase corta: «Estás triste porque querías el parque».',
     'Darle tiempo, sin hacerle muchas preguntas ni darle explicaciones largas.',
     'Cuando esté más tranquila, mostrarle el nuevo plan en su tablero y acordar cuándo irán al parque.'
   ];
-  let ord=[2,0,3,1];
-  const q3=document.getElementById('q3');
-  function paintOrder(){
-    q3.innerHTML=ord.map((s,k)=>`<li class="oitem" data-s="${s}"><span class="num">${k+1}</span><span class="txt">${STEPS[s]}</span><span class="mv"><button type="button" data-mv="-1" data-k="${k}" aria-label="Subir paso" ${k===0?'disabled':''}>${ic('up')}</button><button type="button" data-mv="1" data-k="${k}" aria-label="Bajar paso" ${k===ord.length-1?'disabled':''}>${ic('down')}</button></span></li>`).join('');
-  }
-  q3.addEventListener('click',e=>{ const b=e.target.closest('[data-mv]'); if(!b||done.ev) return; const k=+b.dataset.k, j=k+(+b.dataset.mv); [ord[k],ord[j]]=[ord[j],ord[k]]; paintOrder(); const nb=q3.querySelectorAll('[data-mv]')[j*2+(+b.dataset.mv>0?1:0)]; if(nb && !nb.disabled) nb.focus(); });
+  const ordShow=[2,0,3,1], numOf={}; const q3=document.getElementById('q3');
+  function paintOrder(){ q3.innerHTML=ordShow.map(s=>`<li><button type="button" class="oitem" data-s="${s}"><span class="num ${numOf[s]?'':'empty'}">${numOf[s]||''}</span><span class="txt">${STEPS[s]}</span></button></li>`).join(''); }
+  q3.addEventListener('click',e=>{ const b=e.target.closest('.oitem'); if(!b||done.ev) return; const s=b.dataset.s; if(numOf[s]){ const n=numOf[s]; Object.keys(numOf).forEach(k=>{ if(numOf[k]>=n) delete numOf[k]; }); } else numOf[s]=Object.keys(numOf).length+1; document.getElementById('eq3').textContent=''; paintOrder(); });
+  document.getElementById('q3reset').addEventListener('click',()=>{ if(done.ev) return; Object.keys(numOf).forEach(k=> delete numOf[k]); paintOrder(); });
   paintOrder();
   // Reto 4: historieta
   const STRIP=[
@@ -1112,26 +1175,43 @@ button.dl small{color:var(--indigo);font-weight:600;white-space:nowrap}
   document.getElementById('strip').innerHTML=STRIP.map((s,i)=>`<div class="panelc"><span class="who">${s[0]}</span><div class="say">${s[1]}</div><svg viewBox="0 0 200 120" aria-hidden="true"><rect width="200" height="120" fill="${['#E8E5FF','#FFF5CF','#FFE4EE'][i]}"/><rect y="104" width="200" height="16" fill="#B9EDE2"/>${body(70,30,s[2])}${smile(70,30,1)}${body(132,52,{color:'#FFD23F',hair:true,h:.75})}${i===1?'<rect x="96" y="62" width="22" height="28" rx="3" fill="#FFFFFF" stroke="#231C4F" stroke-width="2"/><path d="M100 70h14M100 76h14M100 82h9" stroke="#5B4BDB" stroke-width="2"/>':''}</svg></div>`).join('');
   const q4=document.getElementById('q4');
   ['A. La abuela','B. El papá','C. La tía'].forEach((o,k)=>{ const l=document.createElement('label'); l.className='check'; l.innerHTML=`<input type="radio" name="q4" value="${k}"><span>${o}</span>`; q4.appendChild(l); });
-  document.getElementById('evalForm').addEventListener('change',e=>{ const s=e.target.closest('.qsec'); if(s){ const er=s.querySelector('.err'); if(er) er.textContent=''; } document.getElementById('evalErr').textContent=''; });
+  q4.addEventListener('change',()=>{ document.getElementById('eq4').textContent=''; });
+  // Navegación entre retos
+  const RQ=['sq1','sq2','sq3','sq4'].map(id=> document.getElementById(id)), rPrev=document.getElementById('rPrev'), rNext=document.getElementById('rNext'), evalCheck=document.getElementById('evalCheck'), rstep=document.getElementById('rstep');
+  let rq=0;
+  function validR(i){
+    const err=(id,m)=>{ document.getElementById(id).textContent=m; return false; };
+    if(i===0 && !dThis.querySelector('[aria-pressed="true"]')) return err('eq1','Toca al menos un momento que haya cambiado.');
+    if(i===1 && Object.keys(links).length<PAIRS.length) return err('eq2','Une las cuatro situaciones con una estrategia.');
+    if(i===2 && Object.keys(numOf).length<STEPS.length) return err('eq3','Numera los cuatro pasos.');
+    if(i===3 && !document.querySelector('input[name="q4"]:checked')) return err('eq4','Elige una opción.');
+    return true;
+  }
+  function showR(i, scroll=true){
+    rq=i; RQ.forEach((s,k)=> s.hidden=k!==i);
+    rPrev.disabled=i===0; rNext.hidden=i===RQ.length-1; evalCheck.hidden=i!==RQ.length-1;
+    rstep.innerHTML=RQ.map((_,k)=>`<span class="${k<i?'done':(k===i?'on':'')}"></span>`).join('')+`Reto ${i+1} de ${RQ.length}`;
+    if(i===1) requestAnimationFrame(()=> drawLines());
+    if(scroll) rstep.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});
+  }
+  rPrev.addEventListener('click',()=>{ if(rq>0) showR(rq-1); });
+  rNext.addEventListener('click',()=>{ if(validR(rq)) showR(rq+1); });
+  showR(0,false);
   const fbBox=(id,good,html)=>{ const f=document.getElementById(id); f.hidden=false; f.classList.toggle('bad',!good); f.innerHTML=html; };
-  document.getElementById('evalCheck').addEventListener('click',(ev)=>{
+  evalCheck.addEventListener('click',()=>{
     if(done.ev) return;
-    let firstBad=null; const bad=(sec,errId,msg)=>{ document.getElementById(errId).textContent=msg; if(!firstBad) firstBad=document.getElementById(sec); };
-    if(!q1.querySelector('input:checked')) bad('sq1','eq1','Marca al menos una situación.');
-    if(Object.keys(links).length<PAIRS.length) bad('sq2','eq2','Une las cuatro situaciones con una estrategia.');
-    if(!document.querySelector('input[name="q4"]:checked')) bad('sq4','eq4','Elige una opción.');
-    if(firstBad){ document.getElementById('evalErr').textContent='Faltan respuestas. Revisa los retos marcados.'; firstBad.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'}); return; }
+    for(let i=0;i<4;i++){ if(!validR(i)){ showR(i); document.getElementById('evalErr').textContent='Falta responder este reto.'; return; } }
+    document.getElementById('evalErr').textContent='';
     // Reto 1
-    let h1=0, w1=0;
-    q1.querySelectorAll('.check').forEach((l,i)=>{ const on=l.querySelector('input').checked, t=Q1[i][1]; if(on&&t){h1++;l.classList.add('ok');} else if(on&&!t){w1++;l.classList.add('no');} else if(!on&&t) l.classList.add('miss'); });
+    let h1=0,w1=0; dThis.querySelectorAll('.dbtn').forEach(b=>{ const on=b.getAttribute('aria-pressed')==='true', ch=DIFF[+b.dataset.i][2]; if(on&&ch){h1++;b.classList.add('ok');} else if(on&&!ch){w1++;b.classList.add('no');} else if(!on&&ch) b.classList.add('miss'); });
     const ok1=h1>=3 && w1<=1;
-    fbBox('fq1',ok1,`<b>${ok1?'¡Bien!':'Revisa este reto.'}</b> Encontraste ${h1} de 4 cambios${w1?` y marcaste ${w1} que no lo eran`:''}. Requieren preparación la profesora reemplazante, la ruta más temprano, el timbre que cambia y el almuerzo en otro lugar: aunque algunos parecen pequeños, alteran algo que el niño espera. El almuerzo de siempre y el capítulo nuevo de su programa no cambian su rutina.`);
+    fbBox('fq1',ok1,`<b>${ok1?'¡Bien!':'Revisa este reto.'}</b> Encontraste ${h1} de 4 cambios${w1?` y marcaste ${w1} momento${w1>1?'s':''} que siguió igual`:''}. Este lunes cambiaron la hora de la ruta, el profesor, el timbre del descanso y el plan de la tarde. Aunque algunos parecen pequeños, alteran lo que el niño espera. El almuerzo y las tareas siguieron igual.`);
     // Reto 2
-    let h2=0; Object.entries(links).forEach(([l,r])=>{ const okp=l===r; if(okp) h2++; [mLeft.querySelector(`[data-i="${l}"]`), mRight.querySelector(`[data-i="${r}"]`)].forEach(b=>{ b.style.borderColor=''; b.classList.add(okp?'ok':'no'); }); });
+    let h2=0; Object.entries(links).forEach(([l,r])=>{ const okp=l===r; if(okp) h2++; const lb=itemOf('L',l), rb=itemOf('R',r); lb.dataset.res=okp?'ok':'no'; [lb,rb].forEach(b=>{ b.style.borderColor=''; b.classList.add(okp?'ok':'no'); }); });
     const ok2=h2>=3;
     fbBox('fq2',ok2,`<b>${ok2?'¡Bien!':'Revisa este reto.'}</b> Uniste correctamente ${h2} de 4 parejas. Cada cambio pide una estrategia distinta: para un profesor nuevo ayuda una foto; para un paseo cancelado, decir qué harán en su lugar y cuándo se hará; para una cita nueva, contarle el paso a paso; y para un cambio pequeño, avisarle antes y darle opciones.`);
     // Reto 3
-    let h3=0; ord.forEach((s,k)=>{ if(s===k) h3++; }); q3.querySelectorAll('.oitem').forEach((li,k)=> li.classList.add(ord[k]===k?'ok':'no'));
+    let h3=0; q3.querySelectorAll('.oitem').forEach(b=>{ const s=+b.dataset.s, okk=numOf[s]===s+1; if(okk) h3++; b.classList.add(okk?'ok':'no'); });
     const ok3=h3===4;
     fbBox('fq3',ok3,`<b>${ok3?'¡Orden perfecto!':`Ubicaste ${h3} de 4 pasos en su lugar.`}</b> El orden adecuado es: 1) calmar el ambiente y mantener la calma; 2) reconocer lo que siente; 3) darle tiempo sin muchas palabras; 4) cuando esté más tranquila, volver al plan con su apoyo visual. Primero se acompaña la emoción y después se retoma la información. Si las reacciones son muy intensas o frecuentes, consulta con el profesional que acompaña a la niña.`);
     // Reto 4
@@ -1140,11 +1220,12 @@ button.dl small{color:var(--indigo);font-weight:600;white-space:nowrap}
     fbBox('fq4',ok4,`<b>${ok4?'¡Correcto!':'La mejor opción era el papá (B).'}</b> El papá explica qué cambia, qué se mantiene (la hora de entrada), anticipa el ruido con los audífonos, ofrece un plan B y muestra el plan por escrito. La abuela niega el cambio y la tía lo vuelve sorpresa.`);
     const s2=[ok2,ok3,ok4].filter(Boolean).length;
     document.getElementById('evalForm').classList.add('locked');
-    markDone('ev'); ev.currentTarget.disabled=true; ev.currentTarget.textContent='Respuestas registradas';
-    const good=ok1 && s2>=2;
-    if(good) confetti();
-    openModal(`<span class="verdict">${good?'¡Excelente trabajo!':'Buen intento'}</span><p class="big" id="dlgTitle">Reconoces los cambios: ${ok1?'logrado':'por reforzar'}. Estrategias: ${s2} de 3 retos.</p><p>Debajo de cada reto encontrarás su retroalimentación.</p><button class="btn" data-close>Ver retroalimentación</button>`, 'bubble'+(good?'':' mid'), ()=> document.getElementById('sq1').scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'}));
+    markDone('ev'); RQ.forEach(s=> s.hidden=false); document.getElementById('rnav').hidden=true; rstep.hidden=true;
+    requestAnimationFrame(()=> drawLines());
+    const good=ok1 && s2>=2; if(good) confetti();
+    openModal(`<span class="verdict">${good?'¡Excelente trabajo!':'Buen intento'}</span><p class="big" id="dlgTitle">Reconocer los cambios: ${ok1?'logrado':'por reforzar'}. Estrategias: ${s2} de 3 retos.</p><p>Ahora verás los cuatro retos con la retroalimentación de cada uno.</p><button class="btn" data-close>Ver retroalimentación</button>`, 'bubble'+(good?'':' mid'), ()=> document.getElementById('sq1').scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'}));
   });
+  window.addEventListener('resize',()=> drawLines());
 
   /* ---------- Construye tu plan ---------- */
   const PLANS={
